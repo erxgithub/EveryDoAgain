@@ -47,6 +47,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91g-De-FKP">
+                                <rect key="frame" x="58" y="290" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21a-NR-ZWN">
                                 <rect key="frame" x="58" y="119" width="38" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -65,16 +71,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91g-De-FKP">
-                                <rect key="frame" x="58" y="290" width="55" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yMU-Ri-bGS">
+                                <rect key="frame" x="58" y="332" width="51" height="31"/>
+                                <connections>
+                                    <action selector="isCompletedSwitch:" destination="JEX-9P-axG" eventType="valueChanged" id="q2i-QN-fM4"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5fI-S8-a9A" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" constant="58" id="1JF-4J-xcb"/>
+                            <constraint firstItem="yMU-Ri-bGS" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" constant="58" id="5B1-IA-ooB"/>
+                            <constraint firstItem="yMU-Ri-bGS" firstAttribute="top" secondItem="91g-De-FKP" secondAttribute="bottom" constant="21" id="6nH-JU-pyg"/>
                             <constraint firstItem="91g-De-FKP" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" constant="58" id="7Sg-LV-Svj"/>
                             <constraint firstItem="91g-De-FKP" firstAttribute="top" secondItem="5fI-S8-a9A" secondAttribute="bottom" constant="8" id="Hti-6K-l6l"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="21a-NR-ZWN" secondAttribute="trailing" constant="20" symbolic="YES" id="MS9-KE-odr"/>
@@ -98,6 +106,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
+                        <outlet property="completedSwitch" destination="yMU-Ri-bGS" id="7BO-OZ-3cR"/>
                         <outlet property="descriptionLabel" destination="Gki-TW-U16" id="MvI-xY-M4v"/>
                         <outlet property="priorityLabel" destination="91g-De-FKP" id="GQm-WW-2tq"/>
                         <outlet property="titleLabel" destination="Trf-dC-Ah4" id="aLc-Gq-a0n"/>

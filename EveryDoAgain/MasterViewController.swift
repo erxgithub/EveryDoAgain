@@ -64,7 +64,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
             // If appropriate, configure the new managed object.
-            //newToDo.timestamp = Date()
 
             let context = self.fetchedResultsController.managedObjectContext
             let newToDo = ToDo(context: context)
@@ -72,6 +71,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             newToDo.title = alert.textFields![0].text
             newToDo.todoDescription = alert.textFields![1].text
             newToDo.priorityNumber = Int32(alert.textFields![2].text!)!
+            newToDo.isCompleted = false
             
             // Save the context.
             do {
@@ -171,10 +171,22 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
 
-    func configureCell(_ cell: CustomTableViewCell, withEvent event: ToDo) {
-        //cell.textLabel!.text = event.timestamp!.description
-        cell.titleLabel.text = event.title?.description
-        cell.descriptionLabel.text = event.todoDescription?.description
+    func configureCell(_ cell: CustomTableViewCell, withEvent todo: ToDo) {
+        cell.titleLabel.text = todo.title
+        
+        if todo.isCompleted
+        {
+            let titleStriked = NSMutableAttributedString(string: todo.title!)
+            titleStriked.addAttribute(NSAttributedStringKey.strikethroughStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: NSMakeRange(0, titleStriked.length))
+            
+            cell.titleLabel.attributedText = titleStriked
+        }
+        else
+        {
+            cell.titleLabel.attributedText = NSMutableAttributedString(string: todo.title!)
+        }
+        
+        cell.descriptionLabel.text = todo.todoDescription
     }
 
     // MARK: - Fetched results controller

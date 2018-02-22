@@ -13,6 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var priorityLabel: UILabel!
+    @IBOutlet var completedSwitch: UISwitch!
     
     func configureView() {
         // Update the user interface for the detail item.
@@ -31,6 +32,9 @@ class DetailViewController: UIViewController {
                 label.text = String(detail.priorityNumber)
                 label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
                 label.sizeToFit()
+            }
+            if let isCompleted = completedSwitch {
+                isCompleted.isOn = detail.isCompleted ? true : false
             }
         }
     }
@@ -53,6 +57,15 @@ class DetailViewController: UIViewController {
         }
     }
 
-
+    @IBAction func isCompletedSwitch(_ sender: UISwitch) {
+//        let context = detailItem?.managedObjectContext
+        detailItem?.isCompleted = sender.isOn
+        do {
+            try detailItem?.managedObjectContext?.save()
+        }
+        catch {
+            print(#line, "problem saving", error.localizedDescription)
+        }
+    }
 }
 
